@@ -1,0 +1,4 @@
+tasks:
+  - name: Start development environment
+    init: npm install -g bun
+    command: bun install
