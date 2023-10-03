@@ -1,5 +1,7 @@
-import { useMutation } from '@apollo/client';
+import { useApolloClient, useMutation } from '@apollo/client';
+import { useRouter } from 'expo-router';
 import { SIGNUP_MUTATION } from '../graphql/mutations';
+import useAuthStorage from './useAuthStorage';
 
 const useSignUp = () => {
   const [mutate, result] = useMutation(SIGNUP_MUTATION);

@@ -1,9 +1,8 @@
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import Constants from 'expo-constants';
 
 const httpLink = createHttpLink({
-  uri: `${Constants.expoConfig.extra.APOLLO_URI}/graphql`,
+  uri: `${process.env.EXPO_PUBLIC_APOLLO_URI}/graphql`,
 });
 
 const createApolloClient = (authStorage) => {
@@ -28,6 +27,9 @@ const createApolloClient = (authStorage) => {
   return new ApolloClient({
     link: authLink.concat(httpLink),
     cache: new InMemoryCache(),
+    fetchOptions: {
+      mode: 'no-cors',
+    },
   });
 };
 

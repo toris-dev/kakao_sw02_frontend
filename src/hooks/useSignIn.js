@@ -6,12 +6,12 @@ import useAuthStorage from './useAuthStorage';
 const useSignIn = () => {
   const { authStorage } = useAuthStorage();
   const apolloClient = useApolloClient();
-  const [mutate, result] = useMutation(SIGNIN_MUTATION);
+  const [mutate, { data, error, loading }] = useMutation(SIGNIN_MUTATION);
   const router = useRouter();
 
   const signIn = async ({ armynumber, password }) => {
-    const { data } = await mutate({ variables: { armynumber, password } });
-    const accessToken = data?.token;
+    await mutate({ variables: { armynumber, password } });
+    const accessToken = data.login.token;
 
     await authStorage.setAccessToken(accessToken);
 
@@ -20,7 +20,7 @@ const useSignIn = () => {
     router.push('/(tabs)/home');
   };
 
-  return [signIn, result];
+  return [signIn, data];
 };
 
 export default useSignIn;

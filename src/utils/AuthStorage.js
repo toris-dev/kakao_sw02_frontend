@@ -13,7 +13,7 @@ class AuthStorage {
   }
 
   async setAccessToken(accessToken) {
-    await AsyncStorage.setItem('token', JSON.stringify(accessToken));
+    await AsyncStorage.setItem('token', accessToken);
     await AsyncStorage.setItem('isLoggedIn', 'true');
   }
 

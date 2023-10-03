@@ -11,7 +11,7 @@ export const SIGNIN_MUTATION = gql`
         nickname
         password
         role
-        militaraybase
+        militarybase
       }
     }
   }

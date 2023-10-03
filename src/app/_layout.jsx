@@ -1,13 +1,9 @@
-import { ApolloProvider } from '@apollo/client';
 import { Stack } from 'expo-router';
+import ApolloProvider from '../provider/ApolloProvider';
 import { AuthProvider } from '../provider/AuthProvider';
-import createApolloClient from '../utils/ApolloClient';
-import AuthStorage from '../utils/AuthStorage';
 export default function RootLayout() {
-  const authStorage = new AuthStorage();
-  const apolloClient = createApolloClient(authStorage);
   return (
-    <ApolloProvider client={apolloClient}>
+    <ApolloProvider>
       <AuthProvider>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
